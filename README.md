@@ -12,10 +12,12 @@ The files provided in this project include:
 ## How To Run The Code
 After cloning the repository run the following commaned in the cloned directory
 > python data/process_data.py data/disaster_categories.csv data/disaster_messages.csv data/DisasterResponse.db
+
 This code will run the process_data.py file on the provided CSV files and store the cleaned data in the DisasterResponse database.
 
 After that run the code
 > python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
+
 This will create the model that will be used in the web app
 
 Finally run the following code inside the app folder
