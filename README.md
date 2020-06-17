@@ -24,3 +24,13 @@ Finally run the following code inside the app folder
 > python run.py
 
 now you can access the web app using the followin link [Here](https://view6914b2f4-3001.udacity-student-workspaces.com/).
+
+The web app looks like this
+
+![Image1](https://i.imgur.com/crTfq6t.png)
+
+It includes a input box for the message you want to analyze, the distribution of the genre and categories.
+
+Once a message is entered the rusults look like this
+
+![Image1](https://i.imgur.com/OhN5yeX.png)
