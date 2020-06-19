@@ -11,7 +11,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_recall_fscore_support
 import pickle
 
-
+# load data from database
 def load_data(database_filepath):
     engine = create_engine('sqlite:///'+database_filepath)
     df = pd.read_sql('SELECT * FROM tb', engine)
@@ -23,7 +23,7 @@ def load_data(database_filepath):
     
     return X,y,'noIdea'
 
-
+# Tokenize the text to produce a better result in the model
 def tokenize(text):
     tokens = nltk.word_tokenize(text)
     lemmatizer = nltk.WordNetLemmatizer()
@@ -35,7 +35,7 @@ def tokenize(text):
 
     return clean_tokens
 
-
+# Creating the machine learning pipeline
 def build_model():
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
@@ -45,7 +45,7 @@ def build_model():
         
     return pipeline
 
-
+# Create the train test split and get results and add them to a dataframe.
 def evaluate_model(model, X_test, y_test, category_names):
     # predict on test data
     y_pred = model.predict(X_test)
@@ -65,12 +65,12 @@ def evaluate_model(model, X_test, y_test, category_names):
     print('recall:', results['recall'].mean())
     
 
-
+# Save the model and export it as a pickle file
 def save_model(model, model_filepath):
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
-
+# Run the functions
 def main():
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
