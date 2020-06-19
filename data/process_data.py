@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 from sqlalchemy import create_engine
 
+# Load the messages and categories dataset into dataframes
 def load_data(Categories, Messages):
     categories = pd.read_csv(Categories)
     messages = pd.read_csv(Messages)
@@ -27,16 +28,16 @@ def load_data(Categories, Messages):
     # concatenate the original dataframe with the new `categories` dataframe
     df = pd.concat([df,categories],axis=1,sort='False',join='inner')
     return df
-
+# Clean the data of dublicates
 def clean_data(df):
     df.drop_duplicates(inplace=True)
     return df
 
-
+# Save the data into a database
 def save_data(df, database_filename):
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('tb', engine, index=False)  
-
+# Run the functions
 def main():
     if len(sys.argv) == 4:
 
